@@ -28,15 +28,37 @@ func (v Vector2) FromRad(angle float64) Vector2 {
 	return Vector2{X: x, Y: y}
 }
 
-func (v *Vector2) Add(other Vector2) {
+func (v Vector2) Add(other Vector2) Vector2 {
 	v.X += other.X
 	v.Y += other.Y
+	return v
 }
-func (v *Vector2) Mult(n float64) {
+func (v Vector2) Sub(other Vector2) Vector2 {
+	v.X -= other.X
+	v.Y -= other.Y
+	return v
+}
+func (v Vector2) Mult(n float64) Vector2 {
 	v.X *= n
 	v.Y *= n
+	return v
 }
-func (v *Vector2) Div(n float64) {
+func (v Vector2) Div(n float64) Vector2 {
 	v.X /= n
 	v.Y /= n
+	return v
+}
+
+func (v Vector2) Dot(other Vector2) float64 {
+	return v.X*other.X + v.Y*other.Y
+}
+
+func (v Vector2) Mag() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
+
+func (v Vector2) Dist(other Vector2) float64 {
+	dx := math.Abs(v.X - other.X)
+	dy := math.Abs(v.Y - other.Y)
+	return math.Sqrt(dx*dx + dy*dy)
 }

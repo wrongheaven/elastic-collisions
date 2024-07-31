@@ -29,12 +29,17 @@ func (g *Game) Update() error {
 	g.particleA.BounceEdges()
 	g.particleB.BounceEdges()
 
+	g.particleA.CheckAndResolveCollision(&g.particleB)
+
+	// fmt.Println(g.particleA.GetMomentum().Add(g.particleB.GetMomentum()))
+	// fmt.Println(g.particleA.GetKineticEnergy() + g.particleB.GetKineticEnergy())
+
 	return nil
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(color.RGBA{127, 127, 127, 255})
 
-	g.particleA.Draw(screen)
-	g.particleB.Draw(screen)
+	g.particleA.Show(screen)
+	g.particleB.Show(screen)
 }
